@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.CategoryMapper">
+
+
+    <!--ategory selectAll(int id);-->
+    <resultMap id="selectCategory" type="com.itheima.pojo.Category">
+       <!--     private int id;
+                private String goodsname;
+                private double price;
+                private int typeid;-->
+        <id property="id" column="category_id"></id>
+        <result property="typename" column="typename"></result>
+        <collection property="productList" ofType="Product">
+            <id property="id" column="product_id"></id>
+            <result property="goodsname" column="goodsname"></result>
+            <result property="price" column="price"></result>
+            <result property="typeid" column="typeid"></result>
+        </collection>
+    </resultMap>
+<select id="selectAll" parameterType="int" resultMap="selectCategory">
+    select c.id category_id, typename, p.id product_id, goodsname, price,typeid
+    from category c left join product p on c.id = typeid
+    where c.id = #{id}
+</select>
+
+<!--    Category selectOne();-->
+    <select id="selectOne" resultType="Category">
+        select * from category
+    </select>
+</mapper>
