@@ -5,4 +5,5 @@ hello git
 33333 online by gates
 44444 
 55555
-66666 测试ssh，
+66666 测试ssh pull
+77777 测试ssh push
